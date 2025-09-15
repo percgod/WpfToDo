@@ -1,0 +1,29 @@
+﻿<Window x:Class="TodoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="To-Do List" Height="400" Width="400"
+        Closing="Window_Closing">
+    <StackPanel Margin="10">
+        <TextBox x:Name="TaskTextBox" Margin="0,0,0,10" Height="25"/>
+        <Button Content="Добавить" Click="AddButton_Click" Margin="0,0,0,10"/>
+
+        <ListBox x:Name="TasksListBox" Height="200" Margin="0,0,0,10" 
+                 SelectionMode="Single" DisplayMemberPath="Text">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsCompleted}" Value="True">
+                            <Setter Property="Foreground" Value="Gray"/>
+                            <Setter Property="TextBlock.TextDecorations" Value="Strikethrough"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="Удалить выбранное" Click="DeleteButton_Click" Margin="0,0,10,0"/>
+            <Button Content="Очистить список" Click="ClearButton_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
